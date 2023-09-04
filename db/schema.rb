@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_030317) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_062350) do
+  create_table "assets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "category_id"
+    t.integer "manufacturer_id"
+    t.string "status"
+    t.string "order_serial"
+    t.datetime "purchase_date"
+    t.integer "purchase_cost"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 150, null: false
     t.datetime "created_at", null: false
