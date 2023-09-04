@@ -9,5 +9,9 @@ class User < ApplicationRecord
   def set_default_status
     self.status ||= 'active'
   end
+
+  def alias
+    return "#{name[0..1]}"
+  end
 end
 

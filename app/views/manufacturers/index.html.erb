@@ -1,14 +1,60 @@
-<p style="color: green"><%= notice %></p>
+<div class="page">
+  <div class="page-wrapper">
+    <div class="page-body">
+      <div class="container-xl">
+        <div class="card border-0 shadow-none">
+          <div class="row g-0">
+            <div class="col d-flex flex-column">
+              <div class="card-body">
+                <div class="col">
+                  <div class="d-flex justify-content-start mb-3">
+                    <h3 class="page-title card-title" style="color: #626976; margin: 0">
+                      Manufacturer
+                      &nbsp;&nbsp;
+                    </h3>
+                    <br>
+                      <%= link_to new_manufacturer_path, class: "btn btn-sm btn-primary", "data-controller": "turbo" do %>
+                        <svg class="icon icon-tabler icon-tabler-plus" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 5l0 14"></path>
+                          <path d="M5 12l14 0"></path>
+                        </svg>
+                        Add
+                      <% end %>
+                  </div>
 
-<h1>Manufacturers</h1>
-
-<div id="manufacturers">
-  <% @manufacturers.each do |manufacturer| %>
-    <%= render manufacturer %>
-    <p>
-      <%= link_to "Show this manufacturer", manufacturer %>
-    </p>
-  <% end %>
+                    <div>
+                      <div class="table-responsive">
+                        <table id="data-table" class="table card-table">
+                          <tr>
+                            <th>Name</th>
+                            <th>Url</th>
+                            <th>Support Url</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                          </tr>
+                          <tbody>
+                            <% @manufacturers.each_with_index do |category, index| %>
+                              <tr>
+                                <td class="name mb-0 text-sm"><%= category.name %></td>
+                                <td class="name mb-0 text-sm"><%= category.url %></td>
+                                <td class="name mb-0 text-sm"><%= category.support_url %></td>
+                                <td class="name mb-0 text-sm"><%= category.phone %></td>
+                                <td class="name mb-0 text-sm"><%= category.email %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New manufacturer", new_manufacturer_path %>
+<%= turbo_frame_tag "remote_modal" %>

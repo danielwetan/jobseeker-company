@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/index'
 
+  get '/profile', to: "pages#profile", as: 'get_profile'
+  patch '/profile', to: 'pages#update_profile', as: 'update_profile'
+
 end

@@ -8,17 +8,59 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta11/dist/js/tabler.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta11/dist/css/tabler.min.css" rel="stylesheet" type="text/css">
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+        --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif !important;
+      }
+    </style>
+
   </head>
 
-  <body>
-    <a href="/">Home</a>
-    <a href="/suppliers">Suppliers</a>
-    <a href="/categories">Categories</a>
-    <a href="/manufacturers">Manufacturers</a>
+  <body class="container" style="background-color: #fff">
+    <%= render "layouts/header" %>
 
+    <% if flash[:notice].present? %>
+      <div class="alert alert-primary alert-dismissible" data-controller="flash" role="alert" aria-live="polite" style="position: absolute; top: 30px; right: 30px; z-index: 1;">
+        <div class="d-flex">
+          <div>
+            <svg class="icon alert-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+          </div>
+          <div>
+            <h4 class="alert-title">Success</h4>
+            <p class="text-muted"><%= flash[:notice].humanize %></p>
+          </div>
+        </div>
+        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+      </div>
+    <% end %>
+    
+    <% if flash[:alert].present? %>
+      <div class="alert alert-danger alert-dismissible" data-controller="flash" role="alert" aria-live="polite" style="position: absolute; top: 30px; right: 30px; z-index: 1;">
+        <div class="d-flex">
+          <div>
+            <svg class="icon alert-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+              <path d="M12 8v4"></path>
+              <path d="M12 16h.01"></path>
+            </svg>
+          </div>
+          <div>
+            <h4 class="alert-title">Alert</h4>
+            <p class="text-muted"><%= flash[:alert].humanize %></p>
+          </div>
+        </div>
+        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+      </div>
+    <% end %>
+  
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
