@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_005608) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_010150) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 150, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suppliers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", limit: 150, null: false
+    t.text "address", null: false
+    t.string "city", null: false
+    t.string "zip", limit: 10, null: false
+    t.string "status", limit: 15, null: false
+    t.string "contact_name", limit: 150, null: false
+    t.string "phone", limit: 20, null: false
+    t.string "email", limit: 128, null: false
+    t.string "url", null: false
+    t.string "notes", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
